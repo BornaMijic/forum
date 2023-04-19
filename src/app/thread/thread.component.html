@@ -1,0 +1,39 @@
+<section class="container">
+  <h3>{{threadTitle}}</h3>
+  <hr/>
+  <div class="post" *ngFor="let post of posts | paginate: {
+                                                      itemsPerPage: 5,
+                                                      currentPage: page}; let i = index ">
+    <p class="float-start">{{post.email}}</p>
+    <p class="float-end">{{post.date}}</p>
+    <div class="clear-float">
+      <hr>
+      <p *ngIf="post.id != idEdit">{{post.message}}</p>
+      <textarea *ngIf="post.id == idEdit" class="post-write"  [(ngModel)]="message"></textarea>
+    </div>
+    <hr *ngIf="email == post.email && !(i == 0 && page == 1) && post.message != 'Message was deleted by author'"/>
+    <button *ngIf="email == post.email && post.message != 'Message was deleted by author' && idEdit == null" class="btn btn-warning btn-space" type="button" (click)="startEdit(post.id!, post.message)">EDIT</button>
+    <button *ngIf="email == post.email && post.message != 'Message was deleted by author' && post.id == idEdit" class="btn btn-success btn-space" type="button" (click)="editPost(post.id, i + (5*(page-1)), post)">DONE</button>
+    <button *ngIf="email == post.email && post.message != 'Message was deleted by author' && post.id == idEdit" class="btn btn-danger btn-space" type="button" (click)="closeEdit()">CANCEL</button>
+    <button *ngIf="email == post.email && !(i == 0 && page == 1) && post.message != 'Message was deleted by author'" class="btn btn-danger" type="button" (click)="deletePost(post.id, i + (5*(page-1)), post)">DELETE</button>
+  </div>
+  <pagination-controls
+    (pageChange)="page = $event">
+  </pagination-controls>
+  <div *ngIf="email && email != ''" class="post-write-box">
+    <form [formGroup]="postForm"
+          (ngSubmit)="addPost()">
+      <div class="text-center">
+           <textarea class="post-write"  name="post" formControlName="post">
+        </textarea>
+      </div>
+      <button type="submit" class="btn btn-primary float-end">POST</button>
+    </form>
+  </div>
+</section>
+<section *ngIf="errorMessage == true" class="container">
+  <p>Error occurred</p>
+</section>
+<section *ngIf="posts.length == 0 && errorMessage == false" class="container">
+  <p>There is no threads</p>
+</section>

@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.brand {
+  margin-left: 15px;
+  color: white;
+}
+
+.nav-right a, p{
+  float: left;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.nav-right a:hover{
+  background-color: #565656;
+  color: white;
+}
+

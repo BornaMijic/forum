@@ -1,0 +1,25 @@
+<section class="container">
+  <div class="login-block">
+    <div *ngIf="errorMessage" class="alert alert-danger alert-box">
+      <p class="text-center text-danger">Invalid credentials</p>
+    </div>
+    <form [formGroup]="loginForm"
+          (ngSubmit)="login()">
+      <div>
+        <label class="text-center form-label">
+          Email:
+        </label>
+        <input type="text" class="form-control" name="email" formControlName="email" placeholder="Email"/>
+      </div>
+      <div>
+        <label class="text-center form-label">
+          Password:
+        </label>
+        <input type="password" class="form-control" name="password" formControlName="password" placeholder="Password"/>
+      </div>
+      <div class="btn-div">
+        <button class="btn btn-primary btn-width">Login</button>
+      </div>
+    </form>
+  </div>
+</section>

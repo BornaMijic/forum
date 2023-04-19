@@ -1,0 +1,71 @@
+<section class="container">
+  <div class="login-block">
+    <div *ngIf="errorMessage" class="alert alert-danger alert-box">
+      <p *ngIf="errorMessage == 'EMAIL_EXISTS';else error_occurred" class="text-center text-danger">Email is already used</p>
+      <ng-template #error_occurred>Error occurred</ng-template>
+    </div>
+    <form [formGroup]="registrationForm"
+          (ngSubmit)="registration()">
+      <div>
+        <label class="text-center form-label">
+          Email:
+        </label>
+        <input type="text" class="form-control" id="email" name="email" formControlName="email" placeholder="Email"/>
+      </div>
+      <div>
+         <span
+           class="text-danger"
+           *ngIf="registrationForm.get('email').errors?.['required'] && (registrationForm.get('email').touched ||registrationForm.get('email').dirty)"
+         >Email is required</span>
+        <span
+          class="text-danger"
+          *ngIf="registrationForm.get('email').hasError('minlength') && (registrationForm.get('email').touched ||registrationForm.get('email').dirty)"
+        >Email needs to have atleast 6 letters</span>
+        <span
+          class="text-danger"
+          *ngIf="registrationForm.get('email').hasError('maxlength') && (registrationForm.get('email').touched ||registrationForm.get('email').dirty)"
+        >Email needs to have less than or equal to 50 letters</span>
+      </div>
+      <div>
+        <label class="text-center form-label">
+          Password:
+        </label>
+        <input type="password" class="form-control" name="password" formControlName="password" placeholder="Password"/>
+      </div>
+      <div>
+         <span
+           class="text-danger"
+           *ngIf="registrationForm.get('password').errors?.['required'] && (registrationForm.get('password').touched ||registrationForm.get('password').dirty)"
+         >Password is required</span>
+        <span
+          class="text-danger"
+          *ngIf="registrationForm.get('password').hasError('minlength') && (registrationForm.get('password').touched ||registrationForm.get('password').dirty)"
+        >Password needs to have atleast 6 letters</span>
+        <span
+          class="text-danger"
+          *ngIf="registrationForm.hasError('maxlength') && (registrationForm.get('password').touched ||registrationForm.get('password').dirty)"
+        >Password needs to have less than or equal to 50 letters</span>
+      </div>
+      <div>
+        <label class="text-center form-label">
+          Confirm password:
+        </label>
+        <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" placeholder="Confirm password"/>
+      </div>
+      <div>
+         <span
+           class="text-danger"
+           *ngIf="registrationForm.get('confirmPassword').errors?.['required'] && (registrationForm.get('confirmPassword').touched ||registrationForm.get('confirmPassword').dirty)"
+         >Confirm password is required</span>
+        <span
+          class="text-danger"
+          *ngIf="registrationForm.hasError('matchPassword') && (registrationForm.get('confirmPassword').touched ||registrationForm.get('confirmPassword').dirty)"
+        >Password and Confirm Passwords have to be equal</span>
+
+      </div>
+      <div class="btn-div">
+        <button type="submit" class="btn btn-primary btn-width" [disabled]="!registrationForm.valid">Register</button>
+      </div>
+    </form>
+  </div>
+</section>

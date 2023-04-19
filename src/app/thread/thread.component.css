@@ -1,0 +1,35 @@
+
+.post {
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+section {
+  margin-top: 25px;
+}
+
+.post-write-box {
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 25px 25px 50px 25px;
+  margin-bottom: 20px;}
+
+.post-write{
+  width: 75%;
+  height: 125px;
+  color: black;
+  border-radius: 10px;
+}
+
+.clear-float {
+  clear: both;
+}
+
+.btn-space {
+  margin-right: 15px;
+}
+
+
+

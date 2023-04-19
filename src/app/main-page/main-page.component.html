@@ -1,0 +1,25 @@
+<section *ngIf="errorMessage == false && threads.length > 0" class="container">
+  <h3 class="float-start">Threads</h3>
+  <button class="btn btn-primary float-end" *ngIf="email.length > 0" routerLink="create-thread">CREATE THREAD</button>
+  <hr class="clear"/>
+  <div class="thread" *ngFor="let thread of threads | paginate: {
+                                                      itemsPerPage: 5,
+                                                      currentPage: page}" [routerLink]="['thread', thread.name, thread.id]">
+    <p class="float-start">Thread title: {{thread.name}}</p>
+  </div>
+  <pagination-controls
+    (pageChange)="page = $event">
+  </pagination-controls>
+</section>
+<section *ngIf="errorMessage == true" class="container">
+    <h3 class="float-start">Threads</h3>
+    <button class="btn btn-primary float-end" *ngIf="email.length > 0" routerLink="create-thread">CREATE THREAD</button>
+    <hr class="clear"/>
+    <p>Error occurred</p>
+</section>
+<section *ngIf="threads.length == 0 && errorMessage == false" class="container">
+    <h3 class="float-start">Threads</h3>
+    <button class="btn btn-primary float-end" *ngIf="email.length > 0" routerLink="create-thread">CREATE THREAD</button>
+    <hr class="clear"/>
+    <p>There is no threads</p>
+</section>

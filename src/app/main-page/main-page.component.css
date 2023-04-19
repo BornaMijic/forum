@@ -1,0 +1,27 @@
+
+.thread {
+  border: 1px solid #252525;
+  border-radius: 25px;
+  padding: 25px 50px 50px 50px;
+  margin-bottom: 20px;
+}
+
+.thread:hover {
+  background-color: #a1a1a1;
+}
+
+.thread:hover > p {
+  color: #1e1e1e;
+}
+
+section {
+  margin-top: 25px;
+}
+
+.clear{
+  clear: both;
+}
+
+
+
+

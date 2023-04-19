@@ -1,0 +1,11 @@
+.create-box {
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 25px;
+  margin-top: 20px;
+}
+
+
+input, textarea {
+  color: black;
+}

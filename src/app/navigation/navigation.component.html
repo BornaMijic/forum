@@ -1,0 +1,11 @@
+<header>
+  <nav class="navbar bg-dark bg-opacity-75">
+    <a class="brand navbar-brand" routerLink="">Forum</a>
+    <div class="nav-right float-end">
+      <a *ngIf="!email && email == ''" class="nav-link" routerLink="/login" >Login</a>
+      <a  *ngIf="!email && email == ''"class="nav-link" routerLink="/registration" >Registration</a>
+      <p  *ngIf="email && email != ''" class="nav-link" >{{email}}</p>
+      <a  *ngIf="email && email != ''"class="nav-link" (click)="logout()" >Logout</a>
+    </div>
+  </nav>
+</header>
